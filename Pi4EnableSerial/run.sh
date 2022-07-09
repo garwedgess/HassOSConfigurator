@@ -7,8 +7,8 @@ config='dtoverlay=dwc2,dr_mode=host'
 until false; do
 set +e
   mkdir /tmp 2>/dev/null
-  mkdir /tmp/mmcblk0p1 /tmp/sda1 2> /dev/null
-  if [ ! -e /dev/sda1 ] && [ ! -e /dev/sdb1 ] && [ ! -e /dev/mmcblk0p1 ]; then 
+  mkdir /tmp/mmcblk0p1 /tmp/sda1 /tmp/sda8 2> /dev/null
+  if [ ! -e /dev/sda1 ] && [ ! -e /dev/sdb1 ] && [ ! -e /dev/mmcblk0p1 ]  && [ ! -e /dev/sda8 ]; then 
     echo "nothing to do. Is protection mode enabled?  You can't run this without disabling protection mode";
     while true; do sleep 99999; done;
 
@@ -33,6 +33,7 @@ set +e
   performWork sda1
   performWork sdb1
   performWork mmcblk0p1
+  performWork sda8
 
   echo "This Configurator did it's job. Perform a hard-power-off now. You can uninstall and reboot now.  This configurator only works once."
   sleep 99999;
